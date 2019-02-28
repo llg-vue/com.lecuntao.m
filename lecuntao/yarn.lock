@@ -999,8 +999,8 @@ bcrypt-pbkdf@^1.0.0:
 
 better-scroll@^1.14.1:
   version "1.14.1"
-  resolved "http://registry.npm.taobao.org/better-scroll/download/better-scroll-1.14.1.tgz#65109c502a750d49543ffbb4208f421b33705c2f"
-  integrity sha1-ZRCcUCp1DUlUP/u0II9CGzNwXC8=
+  resolved "https://registry.yarnpkg.com/better-scroll/-/better-scroll-1.14.1.tgz#65109c502a750d49543ffbb4208f421b33705c2f"
+  integrity sha512-WWNkxiJgzwl8ITIH9pmU7D00QJaJRB59nDED+UrLPPASMj9sISpNLTgYrh+LsOOpGB9xezzKy0Bklw1K1vorHQ==
   dependencies:
     babel-runtime "^6.0.0"
 

@@ -2,15 +2,15 @@
   <div id="header">
     <div class="sel-city">
       <i class="icon-location">
-        <img src="../../../static/img/index/icon_dingwei.png">
+        <img src="../../../../static/img/index/icon_dingwei.png">
       </i>
       <span class="city-name">太原市</span>
       <i class="icon-right">
-        <img src="../../../static/img/index/right-white.png">
+        <img src="../../../../static/img/index/right-white.png">
       </i>
     </div>
     <div class="search-wrap">
-      <a href="javascript:;" class="search-btn"><img src="../../../static/img/index/iconSousuoBlack.png" alt=""></a>
+      <a href="javascript:;" class="search-btn"><img src="../../../../static/img/index/iconSousuoBlack.png" alt=""></a>
       <input type="text" placeholder="搜索您需要的商品" class="search-inp">
     </div>
   </div>
@@ -18,7 +18,7 @@
 <script>
 export default {};
 </script>
-<style lang="">
+<style lang="" scoped>
 #header {
   width: 100%;
   height: 0.8rem;
@@ -46,6 +46,10 @@ export default {};
   height: 0.3rem;
   background-size: contain;
 }
+.icon-location>img{
+  width: 100%;
+  height: 100%;
+}
 .city-name {
   width: 1.2rem;
   overflow: hidden;
@@ -56,6 +60,10 @@ export default {};
   width: 0.1rem;
   height: 0.2rem;
   background-size: contain;
+}
+.icon-right>img{
+  width: 100%;
+  height: 100%;
 }
 .search-wrap{
     position: absolute;
@@ -84,5 +92,9 @@ export default {};
     position: absolute;
     left: 0.2rem;
     top: 0.14rem;
+}
+.search-btn>img{
+    width: 100%;
+    height: 100%;
 }
 </style>
