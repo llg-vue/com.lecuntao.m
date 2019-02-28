@@ -6,7 +6,7 @@ import Shopcart from '@/components/shopcart/shopcart'
 import My from '@/components/my/my'
 import Error from '@/components/error/index'
 import ProList from '../components/common/proList.vue';
-
+import Details from '../components/details/details.vue';
 Vue.use(Router)
 
 export default new Router({
@@ -51,18 +51,25 @@ export default new Router({
     }
     },
     {
-      path: '**',
-      component: Error,
-      meta:{
-        title:'页面走丢了'
-    }
-    },
-    {
       path:"/ProList",
       component:ProList,
       meta:{
         title:"乐村淘-列表"
       }
+    },
+    {
+      path:"/Details",
+      component:Details,
+      meta:{
+        title:"乐村淘-商品详情"
+      }
+    },
+    {
+      path: '**',
+      component: Error,
+      meta:{
+        title:'页面走丢了'
+    }
     }
   ]
 })

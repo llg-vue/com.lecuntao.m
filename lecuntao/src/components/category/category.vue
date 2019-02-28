@@ -25,13 +25,17 @@
                 </ul>
             </div>
         </div>
+        <Footer-com/>
     </div>
 </template>
 <script>
 import qs from 'qs';
-import axios from 'axios';
 import http from '../../apis/category.js';
+import Footer from '../common/footer';
 export default {
+    components: {
+        "Footer-com":Footer
+    },
     data(){
         return{
             leftList:[],
@@ -40,17 +44,9 @@ export default {
         }
     },
     created(){
-        axios({
-            method:"post",
-            url:"/api/lct?api_version=2.3.0&platType=2&client=wap&isEncry=0&time=1550983523304&act=mobile_cate&op=index",
-        })
-        .then((data)=>{
-            console.log(data);
-            this.leftList = data.data.datas;
-        });
         http.listList()
         .then((data)=>{
-            console.log(data);
+            this.leftList = data.data.datas;
         })
         this.getPro();
     },
@@ -63,13 +59,8 @@ export default {
             this.getPro();
         },
         getPro(){
-            let time = new Date().getTime();
-            axios.post("/api/lct?api_version=2.3.0&platType=2&client=wap&isEncry=0&time="+time+"&act=mobile_cate&op=index",
-                qs.stringify({gc_id:this.gc_id}),
-                {headers: {'Content-Type':'application/x-www-form-urlencoded'}}
-            )
+            http.rightPro(qs.stringify({gc_id:this.gc_id}))
             .then((data)=>{
-                console.log(data);
                 this.proList = data.data.datas;
             })
         }
@@ -139,6 +130,7 @@ export default {
         font: inherit;
         vertical-align: baseline;
         word-wrap: break-word;
+        overflow-y: scroll;
     }
     .mainNav>ul>li{
         height: 0.9rem;
@@ -166,6 +158,7 @@ export default {
         bottom: 1rem;
         top: 1.2rem;
         height: 100%;
+        background-color: #fff;
     }
     .rightPro>ul{
         overflow: hidden;
