@@ -1,47 +1,49 @@
 <template>
   <div>
-    <div class="swiper-container" ref="swiperWrap">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide" v-for="(item, index) in imgs" :key="index">
-          <img :src="item">
+    <div class="swiper-container banner-container" ref="bannerContainer">
+      <div class="swiper-wrapper banner-wrapper">
+        <div class="swiper-slide banner-slide" v-for="(item, index) in banners" :key="index">
+          <img :src="item.adv_image">
         </div>
       </div>
       <!-- 如果需要分页器 -->
-      <div class="swiper-pagination"></div>
+      <div class="swiper-pagination banner-pagination"></div>
     </div>
   </div>
 </template>
 <script>
 import Swiper from "swiper";
+import Vuex from "vuex"
 export default {
-    props: {
-    imgs:Array
+  computed: {
+    ...Vuex.mapState({
+      banners: state => state.home.banners
+    })
   },
-  mounted() {
-    new Swiper(".swiper-container", {
-      autoplay: {
-        disableOnInteraction: false
-      },
-      loop: true, // 循环模式选项
-
-      // 如果需要分页器
-      pagination: {
-        el: ".swiper-pagination"
-      }
-    });
+  updated() {
+    if (!this.swiper) {
+      this.swiper = new Swiper(this.$refs.bannerContainer, {
+        autoplay: {
+          disableOnInteraction: false
+        },autoplay: {
+          disableOnInteraction: false
+        },
+         loop: true,
+         pagination: {
+         el: '.banner-pagination'
+        },
+      });
+    }
   }
 };
 </script>
 <style lang="" scope>
-@import "../../../node_modules/swiper/dist/css/swiper.css";
-.swiper-container {
-  width: 100%;
-}
-.swiper-container {
+@import "../../../../node_modules/swiper/dist/css/swiper.min.css";
+.banner-container {
   width: 100%;
   height: 4.1rem;
 }
-.swiper-slide img {
+.banner-slide img {
   width: 100%;
   height: 4.1rem;
 }

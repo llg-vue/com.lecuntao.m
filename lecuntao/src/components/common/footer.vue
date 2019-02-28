@@ -82,6 +82,10 @@ export default {
        font-size: 0.22rem;
        color: #333;
     }
+    #footer>ul>li>a>img{
+           width: 0.44rem;
+           height: 0.48rem;
+    }
     .router-link-active{
         color:#f81234 !important;
     }

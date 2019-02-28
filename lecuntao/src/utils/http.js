@@ -11,9 +11,9 @@ const http = axios.create({
 //请求拦截
 http.interceptors.request.use((config)=>{
 
-    // if(method === "post"){
-    //     config.data = qs.stringify(config.data);
-    // }
+    if(config.method === "post"){
+        config.data = qs.stringify(config.data);
+    }
     return config;
 
 },(err)=>{
@@ -24,7 +24,7 @@ http.interceptors.request.use((config)=>{
 
 //响应拦截
 http.interceptors.response.use((res)=>{
-    return res;
+    return res.data;
 },(err)=>{
     return Promise.reject(err);
 })
