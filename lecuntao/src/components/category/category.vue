@@ -46,7 +46,8 @@ export default {
     created(){
         http.listList()
         .then((data)=>{
-            this.leftList = data.data.datas;
+            console.log(data);
+            this.leftList = data.datas;
         })
         this.getPro();
     },
@@ -59,9 +60,10 @@ export default {
             this.getPro();
         },
         getPro(){
-            http.rightPro(qs.stringify({gc_id:this.gc_id}))
+            http.rightPro({gc_id:this.gc_id})
             .then((data)=>{
-                this.proList = data.data.datas;
+                // console.log(data);
+                this.proList = data.datas;
             })
         }
     }
@@ -120,6 +122,7 @@ export default {
         position: fixed;
         bottom: 1rem;
         top: 1.2rem;
+        overflow: scroll;
     }
     .mainNav>ul{
         width: 100%;
@@ -159,6 +162,7 @@ export default {
         top: 1.2rem;
         height: 100%;
         background-color: #fff;
+        width: 5.75rem;
     }
     .rightPro>ul{
         overflow: hidden;

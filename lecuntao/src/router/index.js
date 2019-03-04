@@ -60,6 +60,7 @@ export default new Router({
     {
       path:"/Details",
       component:Details,
+      name:"Details",
       meta:{
         title:"乐村淘-商品详情"
       }

@@ -68,7 +68,7 @@ export default {
             ],
         }
     },
-
+    
     created(){
         this.title = this.$route.query.title;
         this.gcid = this.$route.query.id;
@@ -82,6 +82,7 @@ export default {
                 momentumLimitDistance: 5,
                 scrollY: true,
                 click:true,
+                probeType:2,
                 scrollbar: {
                     fade: true,
                     interactive: true // 1.8.0 新增
@@ -91,12 +92,16 @@ export default {
                 }
                 // mouseWheel: true,
             }),
+            this.scroll.on('scroll',function(){
+                if(that.scroll.y < -300){
+                    that.upBool = true;
+                }
+            }),
             this.scroll.on("pullingUp",function(){
                 that.page+=1;
                 that.getData();
                 this.finishPullUp();
             });
-
             this.scroll.refresh();
         })
     },
@@ -111,8 +116,7 @@ export default {
     },
     methods:{
         goDetails(item){
-            console.log(item);
-            this.$router.push({path:'/Details',query:{info:item}});
+            this.$router.push({name:'Details',params:{info:JSON.stringify(item)},query:{goodId:item.goods_id,gcId:item.gc_id}});
         },
         upScroll(){
             this.upBool = false;
@@ -145,7 +149,7 @@ export default {
             this.getnewData();
         },
         getparams(){
-            this.params = qs.stringify({
+            this.params = {
                 provinc: 140,
                 city: 140100000000,
                 keyword: "",
@@ -154,21 +158,23 @@ export default {
                 sequence: this.sequence,
                 gcId: this.gcid,
                 workshop: ""
-            })
+            }
         },
         getnewData(){
             this.getparams();
             http.proList(this.params)
             .then((data)=>{
-                this.proList = data.data.datas.list;
+                console.log(data);
+                this.proList = data.datas.list;
             })
         },
         getData(){
             this.getparams();
             http.proList(this.params)
             .then((data)=>{
-                if(data.data.datas.list.length === 0) return;
-                this.proList = this.proList.concat(data.data.datas.list)
+                // console.log(data);
+                if(data.datas.list.length === 0) return;
+                this.proList = this.proList.concat(data.datas.list)
             })
         }
     }

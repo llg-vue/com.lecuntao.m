@@ -3,7 +3,7 @@
         <ul>
             <li v-for="(item, index) in tabBar" :key="index" @click="handle(index)">
                 <router-link :to="item.path">
-                    <img :src="index == activeIndex ? item.iconActive : item.icon ">
+                    <img :src="index === activeSeleted ? item.iconActive : item.icon">
                     <span>{{item.name}}</span>
                 </router-link>
             </li>
@@ -41,18 +41,19 @@ export default {
                 }
                 
                 ],
-                activeIndex:0
+            activeSeleted:0
         }
     },
     methods: {
         handle(index){
-            this.activeIndex = index;
-            this.$emit("handle",this.activeIndex)
+            
+            this.activeSeleted = index;
+            
         }
     },
 }
 </script>
-<style lang="" scoped>
+<style  scoped>
     #footer{
         width: 100%;
         height:1rem;
@@ -61,7 +62,7 @@ export default {
         z-index: 20;
         position: fixed;
         left: 0;
-        bottom: 0;
+        bottom: 0; 
         padding-top: .1rem;
     }
     #footer>ul{

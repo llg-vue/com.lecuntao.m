@@ -103,9 +103,9 @@ export default {
   }
 };
 </script>
-<style lang="">
+<style lang="" scoped>
 .wrapper{
-    height:18rem;
+   height: 18rem;
 }
 #home-wrap {
   width: 100%;
