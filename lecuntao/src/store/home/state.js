@@ -8,5 +8,8 @@ export default {
     tabBar:[],
     categoryGoods:[],
     hotList:[],
-    page:1
+    page:1,
+    addressList:[],
+    addressCityList:[],
+    CityName:"",
 }

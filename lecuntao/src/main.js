@@ -6,7 +6,14 @@ import router from './router'
 import './common/css/reset.css'
 import './common/js/flexble'
 import store from './store'
+<<<<<<< HEAD
 import 'mint-ui/lib/style.css';
+=======
+import "./common/css/my-mint.css"
+
+Vue.prototype.$EventBus=new Vue();
+
+>>>>>>> e91724c40287891b2c4fc6001b231f4b3ec2daeb
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
@@ -14,7 +21,9 @@ new Vue({
   el: '#app',
   router,
   store,
-  components: { App },
+  components: {
+    App
+  },
   template: '<App/>'
 })
 router.beforeEach((to, from, next) => {
@@ -24,4 +33,3 @@ router.beforeEach((to, from, next) => {
   }
   next()
 })
-

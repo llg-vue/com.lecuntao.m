@@ -1,5 +1,6 @@
 {
   "presets": [
+<<<<<<< HEAD
   ["es2015", {
   "modules": false
   }]
@@ -12,5 +13,19 @@
   }
   ],
   ["transform-object-rest-spread"]
+=======
+    ["es2015", {
+      "modules": false
+    }]
+  ],
+  "plugins": [
+    ["component",
+      {
+        "libraryName": "mint-ui",
+        "style": true
+      }
+    ],
+    ["transform-object-rest-spread"]
+>>>>>>> e91724c40287891b2c4fc6001b231f4b3ec2daeb
   ]
 }
