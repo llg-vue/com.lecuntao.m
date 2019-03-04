@@ -13,5 +13,21 @@ export default {
         state.hotList = [...state.hotList,...params.list]
         state.page++;
         // console.log(state.hotList)
+    },
+    handleloaclData(state,params){
+        state.hotList = [...state.hotList,...params.list]
+        state.page++;
+        // console.log(state.hotList)
+    },
+    handleAddressDate(state,data){
+        state.addressList = data;
+        // console.log(state.addressList)
+    },
+    handleAddressCityDate(state,data){
+        state.addressCityList = data;
+    },
+    handleCityName(state,data){
+        localStorage.msg = data
+        state.CityName = localStorage.msg
     }
 }

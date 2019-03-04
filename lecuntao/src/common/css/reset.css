@@ -21,6 +21,8 @@ a { color:#666; text-decoration:none; }
 body,html{
     font-size: .28rem;
     background: #f0f0f0;
+    width: 100%;
+    height: 100%;
 }
 
 

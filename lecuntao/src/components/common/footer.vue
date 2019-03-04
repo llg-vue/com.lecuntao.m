@@ -47,7 +47,6 @@ export default {
     methods: {
         handle(index){
             this.activeIndex = index;
-            this.$emit("handle",this.activeIndex)
         }
     },
 }

@@ -7,6 +7,10 @@ import My from '@/components/my/my'
 import Error from '@/components/error/index'
 import ProList from '../components/common/proList.vue';
 import Details from '../components/details/details.vue';
+import Search from '../components/home/components/search.vue'
+import Address from '../components/home/components/address.vue'
+import AddressCity from '../components/home/components/addressCity.vue'
+import ConfirmOrder from '../components/confirmOrder/confirmOrder.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -63,6 +67,32 @@ export default new Router({
       meta:{
         title:"乐村淘-商品详情"
       }
+    },
+    {
+      path:"/search",
+      name:"search",
+      component:Search,
+    },
+    {
+      path:"/address",
+      name:"address",
+      component:Address,
+      meta:{
+        title:"地址选择"
+      }
+    },
+    {
+      path:"/addressCity",
+      name:"addressCity",
+      component:AddressCity,
+      meta:{
+        title:"地址选择"
+      }
+    },
+    {
+      path:"/confirmOrder",
+      name:"confirmOrder",
+      component:ConfirmOrder
     },
     {
       path: '**',
