@@ -1,5 +1,5 @@
 <template>
-<div>
+<div id="louti-wrap">
     <div class="louti" v-for="(item, index) in goods" :key="index">
         <div class="lou_line">
             <i class="icon_l"></i>

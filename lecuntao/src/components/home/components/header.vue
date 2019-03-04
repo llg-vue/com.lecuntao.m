@@ -1,22 +1,49 @@
 <template>
   <div id="header">
-    <div class="sel-city">
+    <div class="sel-city" @click="handleCity()">
       <i class="icon-location">
         <img src="../../../../static/img/index/icon_dingwei.png">
       </i>
-      <span class="city-name">太原市</span>
+      <span class="city-name">{{msg}}</span>
       <i class="icon-right">
         <img src="../../../../static/img/index/right-white.png">
       </i>
     </div>
-    <div class="search-wrap">
+    <div class="search-wrap" @click="handleTo()">
       <a href="javascript:;" class="search-btn"><img src="../../../../static/img/index/iconSousuoBlack.png" alt=""></a>
       <input type="text" placeholder="搜索您需要的商品" class="search-inp">
     </div>
   </div>
 </template>
 <script>
-export default {};
+import Vuex from 'vuex'
+export default {
+  data() {
+    return {
+      msg:""
+    }
+  },
+  mounted () {
+    this.msg = localStorage.msg
+  },
+  computed: {
+    ...Vuex.mapState({
+      CityName:state=>state.home.CityName,
+    })
+  },
+  methods: {
+    handleTo(){
+    this.$router.push({
+              name:"search",
+          })
+  },
+  handleCity(name){
+    this.$router.push({
+              name:"address",
+          })
+  }
+  },
+};
 </script>
 <style lang="" scoped>
 #header {

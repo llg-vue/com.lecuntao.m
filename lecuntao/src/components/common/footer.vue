@@ -41,17 +41,16 @@ export default {
           name: "我的",
           path: "my"
         }
-
       ],
       activeIndex: 0,
     }
   },
   methods: {
-    handle (index, active) {
+    handle (index) {
       this.activeIndex = index;
-      this.$emit("handle", this.activeIndex)
     }
   },
+
 }
 </script>
 <style lang="" scoped>

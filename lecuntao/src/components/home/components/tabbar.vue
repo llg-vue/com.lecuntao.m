@@ -1,8 +1,8 @@
 <template>
     <div ref="bannerContainer" class="swiper-container swiper-container-horizontal swiper-container-ios nav-sticky">
         <ul id="navContent" class="nav swiper-wrapper navigation">
-            <li class="dq swiper-slide nav_list" v-for="(item, index) in tabBar" :key="index">
-                <a href="javascript:;" class="sp_active">
+            <li @click="handle(index)" class="dq swiper-slide nav_list" v-for="(item, index) in tabBar" :key="index">
+                <a href="javascript:;" :class="index == activeIndex ? 'sp_active' : ''">
                     <i class="icon_sp icon_sp_active">
                         <img :src="item.cate_image">
                         <span>{{item.cate_name}}</span>
@@ -15,7 +15,13 @@
 <script>
 import Vuex from "vuex"
 import Swiper from "swiper"
+import BScroll from "better-scroll";
 export default {
+    data() {
+        return {
+            activeIndex:0
+        }
+    },
     computed: {
         ...Vuex.mapState({
             tabBar:state=>state.home.tabBar
@@ -28,14 +34,30 @@ export default {
             slidesPerGroup : 1,
       });
     }
+  },
+  mounted() {
+      this.scroll = new BScroll(this.$refs.bannerContainer,{
+          pullUpLoad:true,
+          tap:true,
+          probeType:2,
+        });
+  },
+  methods: {
+      handle(index){
+          this.activeIndex = index;
+          this.$emit("handleH",index)
+          console.log(index)
+      }
   }
 }
 </script>
 <style lang="" scoped>
+    .swiper-container{
+        background: #fff;
+    }
     #navContent{
         display: flex;
         justify-content: space-between;
-        background: pink;
     }
     .nav {
         text-align: center;
@@ -71,7 +93,7 @@ export default {
         margin-top: .13rem;
         margin-left: .2rem;
     }
-    .nav .sp_active {
+    .sp_active {
         color: #fff;
         background: #ff788b;
         border-radius: 3rem;

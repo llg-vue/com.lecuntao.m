@@ -10,7 +10,8 @@ export default {
 </script>
 
 <style>
-#app{
-  height:13.34rem;
-}
+  #app{
+    width: 100%;
+    height: 100%;
+  }
 </style>
