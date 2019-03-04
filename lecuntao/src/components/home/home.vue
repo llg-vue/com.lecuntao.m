@@ -15,7 +15,6 @@
       <img @click="mescrollTotop()" :id="bool==true ? 'mescrollTotop' : ''" class="mescroll-totop" src="../../../static/img/zd.png">
     <Footer-com/>
   </div>
-  
 </template>
 <script>
 import Footer from '../common/footer'
@@ -38,7 +37,7 @@ export default {
     }
   },
   components: {
-    "Footer-com":Footer,
+    "Footer-com": Footer,
     "Header-com": Header,
     "Banner-com": Banner,
     "Container-com": Container,
@@ -48,24 +47,25 @@ export default {
     "Louti-com": Louti,
     "Hot-com": Hot
   },
-  created() {
+
+  created () {
     this.handleHomeData();
     this.handleHotData(this.page);
   },
   computed: {
     ...Vuex.mapState({
-      state:state=>state.home,
-      page:state=>state.home.page,
-      hotList:state=>state.home.hotList
+      state: state => state.home,
+      page: state => state.home.page,
+      hotList: state => state.home.hotList
     })
   },
   watch: {
-      hotList(newVal,oldVal){
-          //重新计算content高度
-          this.scroll.refresh();
-          //数据加载完毕允许下次加载
-          this.scroll.finishPullUp();
-      }
+    hotList (newVal, oldVal) {
+      //重新计算content高度
+      this.scroll.refresh();
+      //数据加载完毕允许下次加载
+      this.scroll.finishPullUp();
+    }
   },
   mounted() {
       this.scroll = new BScroll(this.$refs.homeWraper,{
@@ -144,10 +144,11 @@ export default {
 }
 #home-wrap {
   width: 100%;
+  position: relative;
   height: max-content;
   padding-bottom: 1rem;
 }
-.active{
+.active {
   background: rgb(248, 18, 52);
 }
 .mescroll-totop{

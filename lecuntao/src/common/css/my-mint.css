@@ -1,0 +1,96 @@
+.mint-checklist-title {
+  display: none;
+}
+
+.mint-checkbox-input:checked+.mint-checkbox-core {
+  background: #fd5500;
+  border-color: #fd5500;
+}
+
+.mint-checklist-label {
+  padding: 0;
+}
+
+.mint-cell {
+  width: .74rem;
+}
+
+.mint-cell-title {
+  padding-top: .36rem;
+}
+
+.mint-cell-wrapper {
+  height: .96rem;
+}
+
+.mint-cell-wrapper,
+.mint-cell-left,
+.mint-cell,
+  {
+  border: none;
+}
+
+#cart-item-good .mint-cell-wrapper {
+  background: #F7F7F7;
+}
+
+#cart-item-good .mint-checkbox-core {
+  background: #F7F7F7;
+}
+
+#cart-item-good .mint-checkbox-input:checked+.mint-checkbox-core {
+  background: #fd5500;
+  border-color: #fd5500;
+}
+
+.mint-msgbox {
+  border-radius: .2rem;
+  width: 5.4rem;
+  height: 3.04rem;
+}
+ 
+.mint-msgbox-message {
+  width: 4.6rem;
+  font-size: 0.32rem;
+  color: #333;
+  height: .8rem;
+}
+
+.mint-msgbox-input {
+  width: 4.64rem;
+  height: .84rem;
+  padding-top: 0;
+}
+
+.mint-msgbox-input input {
+  width: 4.64rem;
+  height: .84rem;
+  line-height: .84rem;
+  text-align: center;
+}
+
+.mint-msgbox-content {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.mint-msgbox-btns {
+  margin-top: .34rem;
+  height: .84rem;
+
+}
+
+.num-b {
+  width: 5.4rem;
+  height: .86rem;
+}
+
+.mint-msgbox-confirm {
+  background: #F81234;
+  color: #fff;
+  font-size: .28rem;
+}
+
+.mint-msgbox-cancel {
+  font-size: .28rem;
+} 
