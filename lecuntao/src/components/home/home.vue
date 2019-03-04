@@ -1,8 +1,10 @@
 <template>
   <div id="home">
     <Header-com :class="status==true?'active':''"></Header-com>
-    <div ref="homeWraper" class="wrapper">
-      <div id="home-wrap" class="content">
+    <div ref="homeWraper"
+         class="wrapper">
+      <div id="home-wrap"
+           class="content">
         <Banner-com></Banner-com>
         <Container-com></Container-com>
         <Contentone-com></Contentone-com>
@@ -12,9 +14,8 @@
         <Hot-com></Hot-com>
       </div>
     </div>
-    <Footer-com/>
+    <Footer-com />
   </div>
-  
 </template>
 <script>
 import Footer from '../common/footer'
@@ -32,12 +33,12 @@ import BScroll from "better-scroll";
 export default {
   data () {
     return {
-      status:false,
-      bool:false
+      status: false,
+      bool: false
     }
   },
   components: {
-    "Footer-com":Footer,
+    "Footer-com": Footer,
     "Header-com": Header,
     "Banner-com": Banner,
     "Container-com": Container,
@@ -47,51 +48,54 @@ export default {
     "Louti-com": Louti,
     "Hot-com": Hot
   },
-  created() {
+
+  created () {
     this.handleHomeData();
     this.handleHotData(this.page);
   },
   computed: {
     ...Vuex.mapState({
-      state:state=>state.home,
-      page:state=>state.home.page,
-      hotList:state=>state.home.hotList
+      state: state => state.home,
+      page: state => state.home.page,
+      hotList: state => state.home.hotList
     })
   },
   watch: {
-      hotList(newVal,oldVal){
-          //重新计算content高度
-          this.scroll.refresh();
-          //数据加载完毕允许下次加载
-          this.scroll.finishPullUp();
-      }
+    hotList (newVal, oldVal) {
+      //重新计算content高度
+      this.scroll.refresh();
+      //数据加载完毕允许下次加载
+      this.scroll.finishPullUp();
+    }
   },
-  mounted() {
-      this.scroll = new BScroll(this.$refs.homeWraper,{
-          pullUpLoad:true,
-          tap:true,
-          probeType:2
-      });
-      this.scroll.on("pullingUp",()=>{
-          if(this.page<=10){
-            this.handleHotData(this.page);
-          }else{
-            alert("到底了")
-          }
-      });
-      this.scroll.on("scroll",()=>{
-        if(this.scroll.y < -164){
-            this.status = true;
-            }else{
-              this.status = false;
-            }
-        if(this.scroll.y < -875){
-            this.bool = true;
-            }else{
-              this.bool = false;
-            }
-      })
-      
+  mounted () {
+    this.scroll = new BScroll(this.$refs.homeWraper, {
+      pullUpLoad: true,
+      tap: true,
+      probeType: 2
+    });
+    this.scroll.on("pullingUp", () => {
+      if (this.page <= 10) {
+        this.handleHotData(this.page);
+      } else {
+        alert("到底了")
+      }
+    });
+    this.scroll.on("scroll", () => {
+      if (this.scroll.y < -164) {
+        this.status = true;
+      } else {
+        this.status = false;
+      }
+      if (this.scroll.y < -875) {
+        this.bool = true;
+        console.log("bool:", this.bool)
+      } else {
+        this.bool = false;
+        console.log("bool:", this.bool)
+      }
+    })
+
   },
   methods: {
     ...Vuex.mapActions({
@@ -104,20 +108,22 @@ export default {
 };
 </script>
 <style lang="">
-.wrapper{
-    height:18rem;
+.wrapper {
+  height: 18rem;
 }
 #home-wrap {
   width: 100%;
+  position: relative;
   height: max-content;
   padding-bottom: 1rem;
 }
-.active{
+.active {
   background: rgb(248, 18, 52);
 }
-#tabActive{
+#tabActive {
   position: fixed;
   left: 0;
-  top: .8rem;
+  top: 0.8rem;
+  z-index: 99;
 }
 </style>

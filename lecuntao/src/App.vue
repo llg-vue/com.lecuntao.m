@@ -11,6 +11,6 @@ export default {
 
 <style>
 #app{
-  height:18rem
+  height:13.34rem;
 }
 </style>
