@@ -96,19 +96,19 @@ const router = new Router({
       }
     },
     {
-<<<<<<< HEAD
-      path:"/Details",
-      component:Details,
-      name:"Details",
-      meta:{
-        title:"乐村淘-商品详情"
-=======
+      path: "/Details",
+      component: Details,
+      name: "Details",
+      meta: {
+        title: "乐村淘-商品详情"
+      }
+    },
+    {
       path: "/addressCity",
       name: "addressCity",
       component: AddressCity,
       meta: {
         title: "地址选择"
->>>>>>> e91724c40287891b2c4fc6001b231f4b3ec2daeb
       }
     },
     {

@@ -134,10 +134,6 @@ export default {
 };
 </script>
 <style lang="" scoped>
-<<<<<<< HEAD
-.wrapper{
-   height: 18rem;
-=======
 #home{
   width: 100%;
   height: 100%;
@@ -145,7 +141,6 @@ export default {
 }
 .wrapper{
     height: 11.54rem;
->>>>>>> e91724c40287891b2c4fc6001b231f4b3ec2daeb
 }
 #home-wrap {
   width: 100%;

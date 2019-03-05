@@ -1,17 +1,4 @@
 <template>
-<<<<<<< HEAD
-    <div>
-        <h2>shopcort</h2>
-        <Footer/>
-    </div>
-</template>
-<script>
-import Footer from '../common/footer'
-export default {
-    components:{
-        Footer
-    }
-=======
   <div>
     <Header></Header>
     <Main></Main>
@@ -31,7 +18,6 @@ export default {
     CartFooter,
     Footer
   },
->>>>>>> e91724c40287891b2c4fc6001b231f4b3ec2daeb
 }
 </script>
 <style lang="scss" scoped>
