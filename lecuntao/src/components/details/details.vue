@@ -45,7 +45,7 @@
         <div class="popup-shop">
           <a href="javascript:;">
             <span class="box1">
-              <img :src="url+specGoods.goods_image">
+              <img :src="url+storeId+specGoods.goods_image">
             </span>
             <div>
               <span class="popup-price">
@@ -66,19 +66,21 @@
             style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);"
           >
             <div class="popup-flavor">
-              <div class="spec_item">
+              <div class="spec_item" >
                 <div class="popup-txt">颜色</div>
                 <div class="popup-type">
                   <div>
                     <a href="javascript:;" data-attr_value_id="12808" class="a-item act">闪银色</a>
+                    <!-- <a href="javascript:;" v-for='(item,index) in specList[1].value_list' :key="index" data-attr_value_id="item.id" :class="item.act===1?'a-item act':'a-item'">{{item.name}}</a> -->
                   </div>
                 </div>
               </div>
               <div class="spec_item">
                 <div class="popup-txt">版本</div>
                 <div class="popup-type">
-                  <div>
-                    <a href="javascript:;" data-attr_value_id="12809" class="a-item act">182升</a>
+                  <div >
+                    <!-- <a href="javascript:;" v-for='(item,index) in specList[18].value_list' :key="index" data-attr_value_id="item.id" :class="item.act===1?'a-item act':'a-item'">{{item.name}}</a> -->
+                    <a href="javascript:;" data-attr_value_id="12809" class="a-item act">182升</a>                  
                   </div>
                 </div>
               </div>
@@ -86,7 +88,9 @@
                 <div class="popup-txt">服务</div>
                 <div class="popup-type">
                   <div>
+                    <!-- <a href="javascript:;" v-for='(item,index) in specList[23].value_list' :key="index" data-attr_value_id="item.id" :class="item.act===1?'a-item act':'a-item'">{{item.name}}</a> -->
                     <a href="javascript:;" data-attr_value_id="12737" class="a-item act">无</a>
+                  
                   </div>
                 </div>
               </div>
@@ -97,7 +101,7 @@
                 <span class="x-mgt">海尔/统帅 BCD-182LTMPA 182升双门 统帅冰箱 闪银色 182升</span>
               </div>
               <div class="quantity-wrapper">
-                <a href="javascript:;" symbol="-" class="quantity-decrease1">
+                <a href="javascript:;" symbol="-" class="quantity-decrease1" @click="jianNum()">
                   <em id="minus" class="reduce1"></em>
                 </a>
                 <input
@@ -108,8 +112,9 @@
                   data-sel_goods_id="136777"
                   data-max="99"
                   class="quantity"
+                  v-model="inputNum"
                 >
-                <a href="javascript:;" symbol="+" class="quantity-decrease2">
+                <a href="javascript:;" symbol="+" class="quantity-decrease2" @click="addNum()">
                   <em id="plus"></em>
                 </a>
               </div>
@@ -124,9 +129,9 @@
         <div
           class="popup-cur"
           style="display:block; transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);"
-        
+        @click="addShopCart()"
         >
-          <a href="javascript:;">确定</a>
+          <a href="javascript:;" >确定</a>
         </div>
       </div>
     </mt-popup>
@@ -143,6 +148,7 @@ import ImgList from "./components/imgList";
 import Tui from "./components/tuijian";
 import Vue from "vue";
 import { Popup } from "mint-ui";
+import Vuex from '../../store/index.js';
 Vue.component(Popup.name, Popup);
 export default {
   components: {
@@ -153,7 +159,8 @@ export default {
   },
   data() {
     return {
-      url: "https://img.lecuntao.com/data/upload/shop/store/goods/723/",
+      url: "https://img.lecuntao.com/data/upload/shop/store/goods/",
+      storeId:'',
       itemInfo: null,
       head: ["商品", "详情", "推荐", "营业执照"],
       active: 0,
@@ -166,7 +173,9 @@ export default {
       goodId: "",
       gcId: "",
       specGoods: {},
-      btoFlag:false
+      btoFlag:false,
+      specList:{},
+      inputNum:1
     };
   },
   created() {
@@ -189,13 +198,16 @@ export default {
           goods_id: this.goodsInfo.goods_id,
           key: ""
         };
-        console.log(paramss);
+        // console.log(paramss);
         return http.getGoodsDetail(paramss);
       })
       .then(data => {
         this.store = data.datas;
         this.specGoods = this.store.specGoods[0];
         console.log(this.store);
+        this.storeId = this.store.goodsDetail.store_id+"/";
+        this.specList = this.store.specList;
+        console.log(this.specList);
         let params = {
           gc_id: this.gcId,
           province_id: "140",
@@ -209,13 +221,38 @@ export default {
       });
   },
   methods: {
+    addNum(){
+      this.inputNum++;
+    },
+    jianNum(){
+      if(this.inputNum<=1){
+        this.inputNum = 1;
+      }else{
+        this.inputNum--;
+      }
+    },
+    addShopCart(){
+      console.log(this.store.specGoods[0].goods_id,this.inputNum);
+       this.popupVisible = false;
+       let id = this.store.specGoods[0].goods_id;
+       let num = this.inputNum;
+       this.inputNum = 1;
+       let data = {
+         goods_id: id,
+         goods_num: num,
+         key: '8d0868cb99a39448f9381f85ab0c1346'
+       }
+       http.addShopCart(data)
+       .then((data)=>{
+         console.log(data);
+       })
+    },
     gb() {
       this.popupVisible = false;
     },
     addShop() {
       this.popupVisible = !this.popupVisible;
       this.btoFlag = 'addShop'
-      console.log(this.popupVisible);
     },
     liHandler(index) {
       this.active = index;
@@ -235,7 +272,7 @@ export default {
       this.scroll.scrollTo(0, 0, 1000);
     },
     goSHop() {
-      this.router.push({ path: "/shopcart" });
+      this.$router.push({ path: "/shopcart" });
     }
   },
   mounted() {
