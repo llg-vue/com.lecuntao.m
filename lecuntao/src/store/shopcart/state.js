@@ -1,5 +1,5 @@
 export default{
-  getShopToken:"366ac0dfece0a65e4b718a15bf0e7ead",
+  getShopToken:"e7098fe9cafb30308de130016464775b",
   goods:"",
   allGoodState:false,
 }
