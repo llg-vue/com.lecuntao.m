@@ -6,8 +6,10 @@ const getRecommend = (data)=>http('post','/api/lct?api_version=2.3.0&platType=2&
 
 const getGoodsDetail = (data)=>http('post','/api/lct?api_version=2.3.0&platType=2&client=wap&isEncry=0&time=1551499787275&act=mobile_goods_detail&op=getDetailData',data);
 
+const addShopCart = (data)=>http('post','/api/lct?api_version=2.3.0&platType=2&client=wap&isEncry=0&time=1551773087976&act=mobile_cart&op=add',data);
 export default {
     getProData,
     getRecommend,
-    getGoodsDetail
+    getGoodsDetail,
+    addShopCart
 }
