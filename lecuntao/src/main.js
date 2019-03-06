@@ -3,9 +3,19 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import VueLazyload from 'vue-lazyload'
 import './common/css/reset.css'
 import './common/js/flexble'
 import store from './store'
+
+Vue.use(VueLazyload)
+
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  error: '../static/loading/placeholde.png',
+  loading: '../static/loading/placeholde.png',
+  attempt: 1
+})
 
 import 'mint-ui/lib/style.css';
 

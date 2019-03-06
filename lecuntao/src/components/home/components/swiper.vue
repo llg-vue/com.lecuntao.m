@@ -1,7 +1,7 @@
 <template>
     <div id="swiper-container3" ref="bannerContainer" class="swiper-container swiper-container-horizontal swiper-container-ios">
         <ul class="swiper-wrapper">
-            <li class="swiper-slide swi_li" v-for="(item, index) in msgs" :key="index">
+            <li @click="handle(item)" class="swiper-slide swi_li" v-for="(item, index) in msgs" :key="index">
                 <span class="img_sp">
                     <img :src="item.goods_image">
                 </span>
@@ -25,7 +25,12 @@ export default {
             slidesPerGroup : 1,
       });
     }
-  }
+  },
+  methods: {
+      handle(item){
+          this.$router.push({name:'Details',query:{goodId:item.goods_id,gcId:item.gc_id}});
+      }
+  },
 }
 </script>
 <style lang="" scoped>

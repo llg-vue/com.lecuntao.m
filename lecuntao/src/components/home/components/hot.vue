@@ -5,9 +5,9 @@
       <span class="fl">热门推荐</span>
     </div>
     <ul id="dataList" class="data-list">
-      <li v-for="(item, index) in hotList" :key="index">
+      <li @click="handleID(item)" v-for="(item, index) in hotList" :key="index">
         <a href="javascript:;">
-          <img class="pd-img" :src="item.goods_image">
+          <img class="pd-img" v-lazy="item.goods_image" :key="item.goods_image">
         </a>
         <p class="pd-name">{{item.goods_name}}</p>
         <div class="pd-flow">
@@ -26,6 +26,11 @@ export default {
             hotList:state=>state.home.hotList
         })
     },
+    methods: {
+      handleID(item){
+        this.$router.push({name:'Details',query:{goodId:item.goods_id,gcId:item.gc_id}});
+      }
+    }
 };
 </script>
 <style lang="" scoped>

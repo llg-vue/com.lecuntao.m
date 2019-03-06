@@ -10,7 +10,7 @@
             </span>
         </div>
         <ul class="data-list">
-            <li v-for="(item, index) in item.goods_list" :key="index">
+            <li @click="handle(item)" v-for="(item, index) in item.goods_list" :key="index">
                 <a href="javascript:;">
                     <img class="pd-img" :src="item.goods_image">
                 </a>
@@ -27,6 +27,11 @@
 <script>
 import Vuex from "vuex"
 export default {
+    methods: {
+        handle(item){
+            this.$router.push({name:'Details',query:{goodId:item.goods_id,gcId:item.gc_id}});
+        }
+    },
     computed: {
         ...Vuex.mapState({
             goods:state=>state.home.categoryGoods
