@@ -105,5 +105,26 @@ export default {
   //     }
   //   }
   // }
+  mutateGoCount(state) {
+    let goods = state.goods;
+    for (let i = 0; i < goods.length; i++) {
 
+    }
+  },
+  mutateDelGoods(state) {
+    let goods = state.goods;
+    console.log(goods)
+    for (let i = 0; i < goods.length; i++) {
+      for (let j = 0; j < goods[i].goods.length; j++) {
+        if (goods[i].goods[j].goodState) {
+          goods[i].goods.splice(j, 1)
+          if (goods[i].goods.length === 0) {
+            goods.splice(i, 1)
+          }
+          MessageBox.alert("删除成功", "提示")
+        }
+      }
+    }
+    state.goods = goods;
+  }
 }
