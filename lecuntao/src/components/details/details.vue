@@ -19,7 +19,7 @@
     <div class="wrapper" ref="wrapper">
       <div class="content">
         <Banner :Banner="Banners"/>
-        <Info :Infos="goodsInfo" :stores="store" :recoGoods="recommendGoods"/>
+        <Info :nums='inputNum' :Infos="goodsInfo" :stores="store" :recoGoods="recommendGoods" @handler='addShop'/>
         <ImgList id="imgBox"/>
         <Tui :recoGoods="recommendGoods" id="tuijian"/>
       </div>
@@ -34,8 +34,8 @@
           <img src="https://m.lecuntao.com/resource/images/details/shgo.png?lv=1bec669aec" alt>
           购物车
         </li>
-        <li @click="addShop()">加入购物车</li>
-        <li>立即购买</li>
+        <li @click="addShop(1)">加入购物车</li>
+        <li @click='goComOrder()'>立即购买</li>
       </ul>
     </div>
 
@@ -98,7 +98,7 @@
             <div class="popup-count">
               <div class="popup-ctl">
                 <span class="popup-txt2">已选择</span>
-                <span class="x-mgt">海尔/统帅 BCD-182LTMPA 182升双门 统帅冰箱 闪银色 182升</span>
+                <span class="x-mgt">{{specGoods.goods_name}}</span>
               </div>
               <div class="quantity-wrapper">
                 <a href="javascript:;" symbol="-" class="quantity-decrease1" @click="jianNum()">
@@ -122,16 +122,18 @@
           </div>
         </div>
 
-        <div class="popup-bot">
-          <a href="javascript:;" class="popup-join">加入购物车</a>
-          <a href="javascript:;" class="popup-confirm">立即购买</a>
+        <div class="popup-bot" 
+          :style="btoFlag===2?'display:block; transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);':'display:none; transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);'"
+        >
+          <a href="javascript:;" class="popup-join" @click="addShopCart()">加入购物车</a>
+          <a href="javascript:;" class="popup-confirm" @click='goComOrder()'>立即购买</a>
         </div>
         <div
           class="popup-cur"
-          style="display:block; transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);"
+          :style="btoFlag===1?'display:block; transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);':'display:none; transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);'"
         @click="addShopCart()"
         >
-          <a href="javascript:;" >确定</a>
+          <a href="javascript:;">确定</a>
         </div>
       </div>
     </mt-popup>
@@ -173,7 +175,7 @@ export default {
       goodId: "",
       gcId: "",
       specGoods: {},
-      btoFlag:false,
+      btoFlag:1,
       specList:{},
       inputNum:1
     };
@@ -182,6 +184,7 @@ export default {
     // this.itemInfo = JSON.parse(this.$route.params.info);
     this.goodId = this.$route.query.goodId;
     this.gcId = this.$route.query.gcId;
+    
     let params1 = {
       city_id: "140100000000",
       province_id: "140",
@@ -221,6 +224,12 @@ export default {
       });
   },
   methods: {
+    goComOrder(){
+      this.$router.push({path:'/confirmOrder'})
+    },
+    lijiBuy(){
+      console.log(111);
+    },
     addNum(){
       this.inputNum++;
     },
@@ -250,9 +259,10 @@ export default {
     gb() {
       this.popupVisible = false;
     },
-    addShop() {
+    addShop(val) {
+      console.log(val);
       this.popupVisible = !this.popupVisible;
-      this.btoFlag = 'addShop'
+      this.btoFlag = val
     },
     liHandler(index) {
       this.active = index;
@@ -281,7 +291,8 @@ export default {
       let that = this;
       (this.scroll = new BScroll(this.$refs.wrapper, {
         probeType: 2,
-        scrollY: true
+        scrollY: true,
+        click:true
       })),
         this.scroll.on("scroll", function() {
           if (that.scroll.y < -300) {

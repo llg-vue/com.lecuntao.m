@@ -95,6 +95,8 @@ export default {
             this.scroll.on('scroll',function(){
                 if(that.scroll.y < -300){
                     that.upBool = true;
+                }else{
+                    that.upBool = false;
                 }
             }),
             this.scroll.on("pullingUp",function(){

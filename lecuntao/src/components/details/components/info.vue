@@ -1,5 +1,5 @@
 <template>
-  <div class="infoBox" v-if="infos">
+  <div class="infoBox" v-if="infos" >
     
     <div class="prod-title">
       <a href="#" class="prod-tit-l">
@@ -23,11 +23,11 @@
       <span>运至{{infos.fare_title}}</span>
     </div>
     <div class="space-line"></div>
-    <div class="prod-spec">
+    <div class="prod-spec" @click="addShopss()">
       <span class="spec-desc">请选择</span>
       <div class="base-txt">{{store.spec}}</div>
-      <div class="part-note-msg">1个</div>
-      <em class="icon-spot"></em>
+      <div class="part-note-msg">{{numss}}个</div>
+      <em class="icon-spot" ></em>
     </div>
     <div class="space-line"></div>
     <div class="prod-shop" v-if="store.storeInfo">
@@ -176,12 +176,18 @@ export default {
     return {
       leibie: "",
       num: "",
+      numss:1,
       infos: {},
       store: {},
       reco: []
     };
   },
-  props: ["Infos", "stores", "recoGoods"],
+  methods:{
+    addShopss(){
+      this.$emit('handler',2)
+    }
+  },
+  props: ["Infos", "stores", "recoGoods",'nums'],
   watch:{
     Infos(val) {
       this.infos = val;
@@ -196,6 +202,9 @@ export default {
         this.reco = val;
       }
       // console.log(this.reco);
+    },
+    nums(val){
+      this.numss = val;
     }
   }
 };
