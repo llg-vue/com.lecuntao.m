@@ -15,12 +15,10 @@ export default {
       qiang_zhi_geng_xin: ""
     })
     commit("handleHomeData", data.datas);
-    //console.log(data)
   },
   async handleHotData({
     commit
   }, params) {
-    console.log(params)
     let data = await HotDate({
       provinc: 110,
       city: 110100000000,

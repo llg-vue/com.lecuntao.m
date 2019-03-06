@@ -114,7 +114,10 @@ const router = new Router({
     {
       path: "/confirmOrder",
       name: "confirmOrder",
-      component: ConfirmOrder
+      component: ConfirmOrder,
+      meta: {
+        title: "确认订单"
+      }
     },
     {
       path: '**',
