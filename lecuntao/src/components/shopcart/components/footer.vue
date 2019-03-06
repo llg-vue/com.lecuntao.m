@@ -18,11 +18,12 @@
       </div>
     </div>
     <div class="goCount"
-         v-if="editFoot">
+         v-if="editFoot"
+         @click="handlerGoCount()">
       去结算({{goodsCount.goodsNum}})
     </div>
     <div class="goCount"
-         v-else>
+         v-else @click="handlerDelGoods()">
       删除
     </div>
   </div>
@@ -31,7 +32,7 @@
 //导入组件
 import Vue from 'vue'
 import { Checklist } from 'mint-ui';
-import { mapState, mapMutations, mapGetters } from "vuex"
+import { mapState, mapMutations, mapGetters, mapActions } from "vuex"
 Vue.component(Checklist.name, Checklist);
 export default {
   name: 'App',
@@ -52,9 +53,15 @@ export default {
   methods: {
     ...mapMutations({
       handlerGoodAll: "shopcart/mutateAllGoodState",
+      // handlerGoCount: "shopcart/mutateGoCount"
       // goodsAllState: "shopcart/mutateGoodsAllUnClick"
-    })
+      handlerDelGoods:"shopcart/mutateDelGoods"
+    }),
+    handlerGoCount(){
+      this.$router.push("/confirmOrder")
+    }
   },
+
   // mounted () {
   //   this.goodsAllState();
   // },

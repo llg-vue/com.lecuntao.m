@@ -37,7 +37,8 @@
             <div class="good-count-btn">
               <div @click="handlerGoodsReduce({id:goodItem.cart_id,num:goodItem.goods_num,merch:merchindex,good:goodindex})">-</div>
               <div class="good-count"
-                   ref="goodCount" @click="handlerGoodNumUpdate(goodItem)">{{goodItem.goods_num}}</div>
+                   ref="goodCount"
+                   @click="handlerGoodNumUpdate(goodItem)">{{goodItem.goods_num}}</div>
               <div @click="handlerGoodsAdd({id:goodItem.cart_id,num:goodItem.goods_num,merch:merchindex,good:goodindex})">+</div>
             </div>
           </div>
@@ -65,7 +66,7 @@ export default {
       axiosShop: "shopcart/actionShopCart",
       handlerGoodsReduce: "shopcart/actionGoodReduce",
       handlerGoodsAdd: "shopcart/actionGoodAdd",
-      handlerGoodNumUpdate:"shopcart/actionGoodNumUpdate"
+      handlerGoodNumUpdate: "shopcart/actionGoodNumUpdate"
     }),
     ...mapMutations({
       handlerMerchState: "shopcart/mutateMerchState",
@@ -125,6 +126,10 @@ export default {
           height: 0.72rem;
           line-height: 0.36rem;
           width: 4.82rem;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp:2;
+          overflow: hidden;
         }
         .cart-good-price {
           width: 4.82rem;

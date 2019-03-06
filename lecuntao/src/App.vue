@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import T from "./components/confirmOrder/confirmOrder"
 export default {
 }
 </script>

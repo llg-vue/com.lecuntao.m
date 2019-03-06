@@ -66,5 +66,9 @@ export default {
         console.log('商品数量未修改！');
       }
     });
+  },
+
+  actionGoCount({commit,state}){
+    
   }
 }
